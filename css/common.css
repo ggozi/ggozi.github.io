@@ -107,9 +107,12 @@ h2.title:before{content:"";display:block;width:100%;height:5px;margin-bottom:5px
 .skill_list{display:inline-block;text-align:left;font-family:Noto Sans KR;color:#22464e;font-weight:300;}
 .skill_list > li{position:relative;padding-right:420px;margin-bottom:10px;}
 .skill_list > li .txt_wrap{width:220px;display:inline-block;text-align:center;}
-.skill_list > li .txt_wrap .ico_skill{display:inline-block;padding-bottom:10px;}
 .skill_list > li:last-child{padding-right:0;text-align:center;}
 .skill_list > li:last-child .txt_wrap{width:auto;}
+.skill_list > li .txt_wrap .ico_skill{display:inline-block;width:150px;height:59px;margin-bottom:10px;background-image:url(../images/skill/spr_skill.png);background-position:0 0;background-repeat:none;}
+.skill_list > li .txt_wrap .ico_skill.skill2{width:218px;height:67px;background-position:0 -59px;}
+.skill_list > li .txt_wrap .ico_skill.skill3{width:328px;height:90px;background-position:0 -125px;}
+.skill_list > li .txt_wrap .skill4{width:51px;height:65px;background-position:0 -215px;}
 .skill_list > li .graph_wrap{position:absolute;top:30px;left:300px;}
 .skill_list > li .graph{font-size:0;display:inline-block;width:350px;height:30px;background-color:#22464e;vertical-align:middle;}
 .skill_list > li .graph02{width:310px;}
