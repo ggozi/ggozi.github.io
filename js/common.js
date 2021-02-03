@@ -2,6 +2,7 @@ $(document).ready(function(){
 	textRolling();
 	rainDrop();
 	hoverSlideUp();
+	Html.include();
 });
 
 function rainDrop(){
@@ -42,3 +43,25 @@ function hoverSlideUp(){
 		$(this).children('.bg_work_list').stop().slideDown(400);
 	})
 }
+
+var Html = {
+	include:function(){
+		var $elements = $.find('*[data-include-html]');
+		var $fileName = location.pathname.split('/').pop();
+		if($elements.length){
+			$.each($elements,function(){
+				var $this = $(this),
+					$html = $this.data('include-html'),
+					$htmlAry = $html.split('/'),
+					$htmlFile = $htmlAry[$htmlAry.length-1],
+					$atvIdx = $this.data('active');
+				if($atvIdx == undefined)$atvIdx = 1;
+				$this.load($html,function(res,sta,xhr){
+					if(sta == 'success'){
+						console.log('Include '+$htmlFile+'!');
+					}
+				});
+			});
+		}
+	}
+};
