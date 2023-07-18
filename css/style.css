@@ -1,6 +1,5 @@
 @charset "utf-8";
-@import url("font/all-font.css");
-@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+/* @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css); */
 /* reset */
 html, body, h1, h2, h3, h4, h5, h6, p, div, th, td, table, pre, code, form, fieldset, legend, input, button, address, ol, ul, li, dl, dt, dd, img, textarea, blockquote {margin:0;padding:0;}
 html,body{height:100%;}
@@ -18,18 +17,27 @@ address,em,i{font-style:normal;}
 button,input[type="button"],input[type="submit"],input[type="reset"]{cursor:pointer;}
 table{width:100%;border-collapse:collapse;border-spacing:0;}
 textarea{resize:none;vertical-align:middle;padding:2px;}
-/* .clearFix:after{content:"";clear:both;display:block;}
-.clearFix{*zoom:1;} */
 
 #wrap{position:relative;margin-top:90px;}
-#header{position:fixed;margin-top:-90px;width:100%;height:90px;z-index:10;}
+/* header */
+#header{position:fixed;margin-top:-90px;padding:10px 16px;width:100%;height:90px;z-index:10;}
 .skipMenu a{width:100%;position:absolute;top:-200px;left:0;padding:5px 0;background:#000;color:#fff;text-align:center;font-weight:bold;z-index:10;}
 .skipMenu a:focus{top:0;}
+.btn_nav{display:block;width:30px;height:30px;background:none;}
+.btn_nav > i{display:block;width:30px;height:1px;background:#000;}
+.btn_nav > i + i{margin-top:10px;}
 #header h1{display:inline-block;padding:30px 50px;}
-#navigation{position:absolute;top:40px;right:50px;}
-#navigation li{float:left;text-align:center;width:100px;font-weight:300;}
+#gnb{position:absolute;top:40px;right:50px;}
+#gnb li{float:left;text-align:center;width:100px;font-weight:300;}
+
+/* common */
+#container > section{position:relative;padding:100px 0;box-sizing:border-box;}
 #container section{height:100vh;}
-#main{position:relative;}
+
+h2.title{padding-bottom:100px;text-align:center;font-size:24px;font-weight:700;line-height:1.2;}
+h2.title span{position:relative;display:inline-block;border-top:5px solid #232323;padding-top:5px;}
+
+#main{position:relative;padding-top:0;}
 #main hgroup{position:absolute;top:50%;margin-top:-190px;left:10%;z-index:1;}
 #main h2{font-size:180px;line-height:170px;font-weight:700;}
 #main h3{display:none;font-size:48px;font-weight:700;}
@@ -40,21 +48,20 @@ textarea{resize:none;vertical-align:middle;padding:2px;}
 .box_line{display:block;width:50%;height:300px;border-right:1px solid #a9a9a9;}
 .btn_scroll{display:block;font-family:Microsoft PhagsPa;font-size:12px;}
 
-/* common */
-#container > section{position:relative;padding:100px 0;box-sizing:border-box;}
-#container > section#main{padding-top:0;}
-h2.title{padding-bottom:100px;text-align:center;font-size:24px;font-weight:700;line-height:1.2;}
-h2.title span{position:relative;display:inline-block;border-top:5px solid #232323;padding-top:5px;}
+/* works */
+#container section#works{height:auto;background:#f6f6f6;}
+#works .ly_inner{width:980px;margin:0 auto;}
+.work_list{overflow:hidden;margin:0 auto;}
+.work_list{position:relative;}
+.work_list ul{margin:0 -15px;}
+.work_list ul:after{content:'';display:block;clear:both;}
+.work_list ul > li{float:left;width:calc(33.333% - 30px);padding:15px;}
+.work_list ul > li a{position:relative;display:block;}
+.work_list ul > li img{width:100%;}
+.work_list ul > li .project{position:absolute;top:0;left:0;display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:rgba(49,63,52,0.4);z-index:3;text-align:center;}
+.work_list ul > li .title{display:flex;align-items:center;justify-content:center;width:250px;height:70px;padding:8px;box-sizing:border-box;border:2px solid #fff;border-radius:5px;font-size:18px;font-family:Noto Sans KR;color:#fff;}
+.work_list ul > li .desc{display:inline-block;padding-top:10px;font-size:14px;font-family:Noto Sans KR;font-weight:100;color:#fff;}
 
-/* about */
-#about{box-sizing:border-box;text-align:center;}
-#about h3{position:absolute;top:170px;left:300px;font-size:79px;font-weight:700;}
-.info_me{position:relative;display:inline-block;margin-top:20px;text-align:left;}
-.info_me li{margin-bottom:20px;font-size:18px;}
-.info_me li span{font-family:Noto Sans KR;font-weight:700;}
-.info_me li span.date{display:inline-block;width:212px;}
-.info_me:before{content:"";position:absolute;top:-20px;left:-200px;display:block;width:800px;height:1px;background-color:#ffde00}
-.info_me:after{content:"";position:absolute;bottom:-20px;right:-160px;display:block;width:800px;height:1px;background-color:#42bdac}
 
 /* skill */
 #skill{text-align:center;}
@@ -73,18 +80,15 @@ h2.title span{position:relative;display:inline-block;border-top:5px solid #23232
 .skill_list > li .graph03{width:210px;}
 .skill_list > li span+span{padding-left:10px;font-size:24px;vertical-align:middle;font-weight:500;}
 
-/* works */
-#container section#works{height:auto;/*background-color:#f9f9f9;*/background:#f6f6f6;}
-.work_list{max-width:1318px;margin:0 auto;font-size:0;}
-.work_list li{display:inline-block;width:50%;box-sizing:border-box;padding:9px;}
-.work_list li a{display:inline-block;position:relative;}
-.work_list li img{width:100%;}
-.work_list li a .bg_work_list{display:none;position:absolute;top:0;bottom:0;left:0;width:100%;background:#006150;opacity:0.8;z-index:2;}
-.work_list li:nth-child(3n+1) a::before{background-color:#00324a;}
-.work_list li a .project{display:none;position:absolute;top:50%;margin-top:-10%;left:50%;margin-left:-100px;z-index:3;text-align:center;}
-/* .work_list li a:hover .project{display:block;} */
-.work_list li .title{display:block;width:200px;padding:8px;border:2px solid #fff;border-radius:5px;font-size:18px;font-family:Noto Sans KR;color:#fff;}
-.work_list li .desc{display:inline-block;padding-top:10px;font-size:14px;font-family:Noto Sans KR;font-weight:100;color:#fff;}
+/* about */
+#about{box-sizing:border-box;text-align:center;}
+#about h3{position:absolute;top:170px;left:300px;font-size:79px;font-weight:700;}
+.info_me{position:relative;display:inline-block;margin-top:20px;text-align:left;}
+.info_me li{margin-bottom:20px;font-size:14px;}
+.info_me li span{font-family:Noto Sans KR;font-weight:700;}
+.info_me li span.date{display:inline-block;width:212px;}
+.info_me:before{content:"";position:absolute;top:-20px;left:-200px;display:block;width:800px;height:1px;background-color:#ffde00}
+.info_me:after{content:"";position:absolute;bottom:-20px;right:-160px;display:block;width:800px;height:1px;background-color:#42bdac}
 
 /* contact */
 #container section#contact{height:55vh;text-align:center;}
@@ -99,3 +103,10 @@ h2.title span{position:relative;display:inline-block;border-top:5px solid #23232
 #footer{padding:30px 100px;background-color:#008381;}
 .bottom_area{text-align:right;}
 .bottom_area span{vertical-align:bottom;font-family:Noto Sans CJK KR;font-weight:bold;font-size:10px;}
+
+/* ==========================================================================
+   Media Queries for Responsive Design.
+   ========================================================================== */
+@media only screen and (max-width:760px) {
+    
+}
