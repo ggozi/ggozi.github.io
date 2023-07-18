@@ -2,6 +2,7 @@ $(function(){
 	uiHtml.include();
 	swiperTotal.init();
 	uiEtc.init();
+	scrollItem();
 });
 
 
@@ -46,7 +47,7 @@ const swiperTotal = {
 	workSwiper : function(e) {
 		let swiperMain = document.querySelector('.work-swiper');
 
-		new Swiper(swiperMain, {
+		const workSwiper = new Swiper(swiperMain, {
 			// grabCursor: true,
 			// centeredSlides: true,
 			slidesPerView: 1,
@@ -66,6 +67,37 @@ const swiperTotal = {
 				nextEl: '.swiper-button-next',
 				prevEl: '.swiper-button-prev',
 			},
+			on :{
+				init:function(){
+					$('.work-swiper .swiper-wrapper div').attr({'aria-hidden':'true','tabindex':-1});
+					$('.work-swiper .swiper-wrapper div').eq(this.activeIndex).attr({'aria-hidden':'false','tabindex':0});
+				},
+				slideChange:function(e){
+					$('.work-swiper .swiper-wrapper div').attr({'aria-hidden':'true','tabindex':-1});
+					$('.work-swiper .swiper-wrapper div').eq(this.activeIndex).attr({'aria-hidden':'false','tabindex':0});
+					let totalSlides = this.slides.length;
+					let currentCount = (this.activeIndex)%(totalSlides)+1;
+					if(currentCount === 0){
+						$('.work-swiper .swiper-pagination button').removeAttr('title');
+						$('.work-swiper .swiper-pagination button.swiper-pagination-bullet-active').attr({'title':totalSlides+'번째 배너 선택됨'});
+					}else{
+						$('.work-swiper .swiper-pagination button').removeAttr('title');
+						$('.work-swiper .swiper-pagination button.swiper-pagination-bullet-active').attr({'title':'선택됨'});
+					}
+				}
+			}
+		})
+
+		
+		$('.swiper-play').on('click', function(e){
+			workSwiper.autoplay.start();
+			$(this).hide();
+			$('.swiper-stop').show();
+		})
+		$('.swiper-stop').on('click', function(e){
+			workSwiper.autoplay.stop();
+			$(this).hide();
+			$('.swiper-play').show();
 		})
 
 	}
@@ -108,3 +140,55 @@ const uiEtc = {
 	}
 }
 
+
+const scrollItem = function(){
+	let $elements = $.find('*[data-animation]'),
+		$window = $(window);
+
+	$(window).on('scroll resize',function(){
+		$elements = $.find('*[data-animation]');
+		if($elements.length > 0){
+			checkInView();
+		}
+ 	});
+
+	function checkInView() {
+		let $winHeight = $window.height(),
+			$scrollTop = $window.scrollTop(),
+			$winBottom = ($scrollTop + $winHeight);
+
+		$.each($elements, function() {
+			let $el = $(this),
+				$elHeight = $($el).outerHeight(),
+				$elTop = $($el).offset().top,
+				//$elCenter = $elTop + ($elHeight/2),
+				$elBottom = $elTop + $elHeight,
+				$animationClass = $el.data('animation'),
+				$delay = $el.data('delay'),
+				$duration = $el.data('duration'),
+				$gap = 200;
+
+
+			if(!$el.hasClass('animated') && $animationClass != 'on'){
+				if($delay>0){
+					$el.css({
+						'-webkit-animation-delay':$delay+'ms',
+						'animation-delay':$delay+'ms'
+					});
+				}
+				if($duration>0){
+					$el.css({
+						'-webkit-animation-duration':$duration+'ms',
+						'animation-duration':$duration+'ms'
+					});
+				}
+
+				$el.addClass('animated');
+			}
+
+			if ($elTop >= $scrollTop && $elBottom <= $winBottom) {
+				$el.addClass($animationClass);
+			}
+		});
+	}
+};
