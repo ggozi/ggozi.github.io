@@ -3,6 +3,25 @@ $(function(){
 	swiperTotal.init();
 	uiEtc.init();
 	scrollItem();
+	sclMenu.init();
+});
+
+$(window).on('load',function(){
+	sclMenu.gnb();
+	sclMenu.gnbBtn();
+
+	function floatMenu(){
+		if($(window).scrollTop() > 10){
+			$("#header").addClass("white");
+		}else{
+			$("#header").removeClass("white");
+		}
+	}
+
+	$(window).scroll(function(){
+		floatMenu();
+	});
+	
 });
 
 
@@ -40,6 +59,81 @@ const uiHtml = {
 	}
 };
 
+const sclMenu = {
+	init : function(){
+		//sclMenu.gnb();
+		sclMenu.btnScl();
+	},
+	gnb : function(e){
+		let $menu = $('#gnb li');
+		$menu.each(function(){
+			let $this = $(this);
+			let $anchor = $this.find('>a');
+
+
+			$anchor.on('click',function(e){
+				e.preventDefault();
+				let $this = $(this);
+				let $headerH = $('#header').outerHeight();
+				$('html, body').stop().animate({
+					scrollTop: $($this.attr('href')).offset().top - $headerH
+				}, 1000,'easeInOutExpo',function(){
+					$this.attr('title','선택됨').parent('li').addClass('on').siblings().removeClass('on').find('>a').removeAttr('title');
+	
+				});
+				
+			})
+		});
+		$(window).scroll(function(){
+			let $winH = $(window).height();
+			let $winScl = $(window).scrollTop();
+			let $menu = $('#gnb li');
+
+			$menu.each(function(){
+				let $this = $(this);
+				let $anchor = $this.find('>a');
+				let $anchorSclT = $($anchor.attr('href')).offset().top;
+				let $anchorTop = $anchorSclT + $anchor.outerHeight(true);
+				let $headerH = $('#header').outerHeight();
+				let $sclBtm = $('#wrap').height() - $winH - $headerH;
+
+				if($winScl >= $anchorTop - 135 && $winScl < $sclBtm){
+					$this.addClass('on').siblings().removeClass('on');
+				}
+
+				if($winScl >= $sclBtm) {
+					$(".gnb li").eq(3).removeClass('on');
+					$(".gnb li").eq(4).addClass('on');
+				}
+			})
+
+
+		})
+	},
+	btnScl : function(){
+		$('.btn_scroll').on('click',function(){
+			let $headerH = $('#header').outerHeight();
+			let $workOffTop = $('#works').offset().top - $headerH;
+
+			$('html, body').stop().animate({
+				scrollTop: $workOffTop
+			}, 400);
+		})
+	},
+	gnbBtn : function(){
+		$('#header .btn_nav').on('click', function(){
+			
+			$('#gnb').toggleClass('active');
+
+			if($(this).hasClass('on')){
+				$(this).removeClass('on').attr('title','메뉴열기');
+			}else{
+				$(this).addClass('on').attr('title','메뉴닫기');;
+			}
+		});
+	}
+}
+
 const swiperTotal = {
 	init: function() {
 		swiperTotal.workSwiper();
@@ -48,13 +142,24 @@ const swiperTotal = {
 		let swiperMain = document.querySelector('.work-swiper');
 
 		const workSwiper = new Swiper(swiperMain, {
-			// grabCursor: true,
-			// centeredSlides: true,
 			slidesPerView: 1,
-			loop: true,
+			grid: {
+				rows: 1,
+			},
+			spaceBetween: 5,
+			breakpoints: {
+				901: {
+				  slidesPerView: 3,
+				  grid: {
+					  rows: 2,
+				  },
+				  spaceBetween: 30,
+				},
+			},
+			loop: false,
 			a11y: false,
 			autoplay: {
-				delay: 6000,
+				delay: 5000,
 			},
 			pagination: {
 				el: ".swiper-pagination",
@@ -87,7 +192,6 @@ const swiperTotal = {
 				}
 			}
 		})
-
 		
 		$('.swiper-play').on('click', function(e){
 			workSwiper.autoplay.start();
@@ -109,18 +213,23 @@ const uiEtc = {
 		uiEtc.rainDrop();
 	},
 	textRolling : function(e){
-		$('.tlt').textillate({
+		$('.h2_tit').textillate({
 			in: {
 				effect: 'fadeInLeft',
 				callback: function(){
-					$('.tlt2').show().textillate({
-						in: {
-							effect: 'fadeInLeftBig'
-						}
-					});
+					
 				}
 			}
 		});
+
+		let setTime = setTimeout(function(){
+			$('.h3_tit').show().textillate({
+				in: {
+					effect: 'fadeInLeftBig'
+				}
+			});
+			clearTimeout(setTime);
+		},200)
 	},
 	rainDrop : function(e){
 		$('#contact').raindrops({
@@ -170,13 +279,13 @@ const scrollItem = function(){
 
 
 			if(!$el.hasClass('animated') && $animationClass != 'on'){
-				if($delay>0){
+				if($delay > 0){
 					$el.css({
 						'-webkit-animation-delay':$delay+'ms',
 						'animation-delay':$delay+'ms'
 					});
 				}
-				if($duration>0){
+				if($duration > 0){
 					$el.css({
 						'-webkit-animation-duration':$duration+'ms',
 						'animation-duration':$duration+'ms'
