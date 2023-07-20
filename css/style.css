@@ -45,7 +45,7 @@ textarea{resize:none;vertical-align:middle;padding:2px;}
 
 .btn_wrap{position:absolute;bottom:0;left:50%;}
 .btn_scroll{position:absolute;top:-25px;left:50%;transform:translateX(-50%);display:block;font-family:Microsoft PhagsPa;font-size:12px;animation:bounceUp 0.7s infinite linear;background:none;}
-.box_line{position:absolute;left:50%;display:block;width:50%;height:200px;border-right:1px solid #a9a9a9;animation: lineMove 2s linear;}
+.box_line{position:absolute;left:50%;display:block;width:50%;height:300px;border-right:1px solid #a9a9a9;animation: lineMove 2s linear;}
 @keyframes bounceUp {
    0%{ top:-30px; }
    50%{ top:-25px; }
@@ -170,7 +170,8 @@ h2.title span{position:relative;display:inline-block;border-top:5px solid #23232
    #main .h3_tit{font-size:24px;}
    #main .txt_sub{position:static;margin-left:-16px;margin-top:30px;width:200px;}
    .main_logo{right:initial;top:50%;left:50%;margin-top:-145px;transform:translateX(-50%);width:70%;opacity:0.7}
-
+   .btn_wrap{bottom:40px;}
+   
    /* works */
    .work_list{height:auto;padding-bottom:0;}
    .work-swiper-wrap{padding:0 25px;}
