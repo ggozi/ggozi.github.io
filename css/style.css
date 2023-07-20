@@ -14,7 +14,7 @@ a:link, a:visited, a:active, a:hover, a:focus {text-decoration:none;color:#222;}
 input,select,button{vertical-align:middle;}
 input[type="text"],input[type="email"],input[type="url"],input[type="search"],input[type="password"],select,textarea{border:1px solid #ddd;height:22px;}
 address,em,i{font-style:normal;}
-button,input[type="button"],input[type="submit"],input[type="reset"]{cursor:pointer;}
+button,input[type="button"],input[type="submit"],input[type="reset"]{cursor:pointer;background:none}
 table{width:100%;border-collapse:collapse;border-spacing:0;}
 textarea{resize:none;vertical-align:middle;padding:2px;}
 
@@ -125,6 +125,20 @@ h2.title span{position:relative;display:inline-block;border-top:5px solid #23232
 #footer .bottom_area > a{display:inline-block;width:60px;}
 #footer .bottom_area img{width:100%;}
 
+/* popup */
+.pop_wrap{display:none;position:fixed;top:0;bottom:0;left:0;right:0;width:100%;background:rgba(0,0,0,0.7);transition:all 1s;z-index:1000;}
+.pop_wrap.is_visible{display:flex;justify-content:center;align-items:center;font-family:Noto Sans KR;}
+.pop_wrap .popup{position:relative;width:300px;background:#fff;border-radius:5px;overflow:hidden;}
+.pop_head{padding:15px 16px;background:#333;color:#fff;}
+.pop_head h1{text-align:center;font-size:16px;}
+.pop_cont{padding:40px 20px;}
+.pop_cont p{font-size:14px;text-align:center;color:#333;}
+.pop_close{position:absolute;top:0;right:5px;width:52px;height:52px;color:transparent;font-size:0.1px;background:none;}
+.pop_close:before,.pop_close:after{position:absolute;top:17px;right:24px;content:'';display:block;width:1px;height:18px;background:#fff;}
+.pop_close:before{transform:rotate(45deg);}
+.pop_close:after{transform:rotate(-45deg);}
+
+
 /* ==========================================================================
    Media Queries for Responsive Design.
    ========================================================================== */
@@ -185,4 +199,6 @@ h2.title span{position:relative;display:inline-block;border-top:5px solid #23232
 
    #footer{padding:20px 16px;}
    #footer .bottom_area > a{width:40px;}
+
+   .pop_wrap .popup{width:90%}
 }

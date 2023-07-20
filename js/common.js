@@ -4,6 +4,7 @@ $(function(){
 	uiEtc.init();
 	scrollItem();
 	sclMenu.init();
+	popUi();
 });
 
 $(window).on('load',function(){
@@ -301,3 +302,32 @@ const scrollItem = function(){
 		});
 	}
 };
+
+let $popSpeed = 300,
+	$popOpenBtn = '';
+const popUi = function(){
+    const $popBtn = $('.ui-pop-open');
+
+    $popBtn.each(function(){
+        let $this = $(this);
+        $this.on('click',function(){
+            const $thHref = $this.attr('href');
+
+            $($thHref).addClass('is_visible');
+            $('body').css({
+                'overflow':'hidden',
+                'touch-action':'none',
+                '-webkit-overflow-scolling':'none',
+                'overscroll-behavior':'none'
+            });
+        });
+    });
+
+    var $popClose = $('.pop_close');
+
+    $popClose.on('click',function(){
+        $(this).parents('.pop_wrap').removeClass('is_visible');
+        $('body').removeAttr('style');
+    });
+}
+
