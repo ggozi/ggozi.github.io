@@ -157,10 +157,10 @@ h2.title span{position:relative;display:inline-block;border-top:5px solid #23232
    .btn_nav.on > i:nth-child(1){transform:rotate(-45deg);-webkit-transform:rotate(-45deg);}
    .btn_nav.on > i:nth-child(2){display:none;}
    .btn_nav.on > i:nth-child(3){transform:rotate(45deg);-webkit-transform:rotate(45deg);}
-   #gnb{display:none;transform:none;-webkit-transform:none;z-index:5;}
+   #gnb{display:none;transform:none;-webkit-transform:none;z-index:5;box-shadow:0 14px 18px -13px rgba(0,0,0,0.2)}
    #gnb.active{display:block;position:absolute;top:50px;left:0;}
-   #gnb li{float:none;width:100%;background:rgba(221,221,221,0.7);}
-   #gnb li + li > a{border-top:1px solid #ddd}
+   #gnb li{float:none;width:100%;background:rgba(255,255,255,0.9);}
+   #gnb li + li > a{border-top:1px dotted #777}
    #container section{padding:60px 0;}
    h2.title{padding-bottom:50px;}
 
