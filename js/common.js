@@ -5,6 +5,7 @@ $(function(){
 	scrollItem();
 	sclMenu.init();
 	popUi();
+	btnTopUI();
 });
 
 $(window).on('load',function(){
@@ -251,6 +252,7 @@ const uiEtc = {
 }
 
 
+/* scroll-animation */
 const scrollItem = function(){
 	let $elements = $.find('*[data-animation]'),
 		$window = $(window);
@@ -303,6 +305,7 @@ const scrollItem = function(){
 	}
 };
 
+/* popup */
 let $popSpeed = 300,
 	$popOpenBtn = '';
 const popUi = function(){
@@ -330,4 +333,33 @@ const popUi = function(){
         $('body').removeAttr('style');
     });
 }
+
+
+/* TOP 버튼 */
+const btnTopUI = function() {
+	const settings = {
+		button : '#btn_top',
+		text : '컨텐츠 상단으로 이동',
+		min : 0,
+		onClass : 'on',
+		scrollSpeed : 300
+	};
+
+	$('body').append('<button id="' + settings.button.substring(1) + '">' + settings.text + '</button>');
+	$(settings.button+',.btn_top' ).off('click').on('click', function(e){
+		e.preventDefault();
+		$('html, body').animate({ scrollTop : 0 }, settings.scrollSpeed);
+	})
+
+	$(window).scroll(function() {
+		var position = $(window).scrollTop();
+		if (position > settings.min) {
+			$(settings.button).addClass(settings.onClass);
+		}
+		else {
+			$("#btn_top").removeClass('on');
+		}
+	});
+};
+
 

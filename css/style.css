@@ -138,6 +138,8 @@ h2.title span{position:relative;display:inline-block;border-top:5px solid #23232
 .pop_close:before{transform:rotate(45deg);}
 .pop_close:after{transform:rotate(-45deg);}
 
+#btn_top{display:none;position:fixed;bottom:70px;right:30px;width:60px;height:60px;border-radius:100%;border:1px solid #ddd;box-shadow:0 5px 9px -1px rgba(0,0,0,0.1);background: rgba(248,255,255,0.5) url(../images/common/img_top_arrow.png) no-repeat center / 15px 8px;color:transparent;font-size:1px;z-index:15;}
+#btn_top.on{display:block;}
 
 /* ==========================================================================
    Media Queries for Responsive Design.
@@ -198,8 +200,15 @@ h2.title span{position:relative;display:inline-block;border-top:5px solid #23232
    .info_me:before{left:0;width:100%;}
    .info_me:after{right:0;width:100%;}
 
+   /* contact */
+   #contact{height:calc(100vh - 71px);}
+
    #footer{padding:20px 16px;}
    #footer .bottom_area > a{width:40px;}
 
+   /* popup */
    .pop_wrap .popup{width:90%}
+
+   /* btn_top */
+   #btn_top{width:40px;height:40px;right:16px;bottom:50px;}
 }
